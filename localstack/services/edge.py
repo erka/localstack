@@ -147,6 +147,8 @@ def get_api_from_headers(headers, path=None):
         result = 'cognito-idp', config.PORT_COGNITO_IDP
     elif target.startswith('AWSCognitoIdentityService') or 'cognito-identity.' in host:
         result = 'cognito-identity', config.PORT_COGNITO_IDENTITY
+    elif result[0] == 's3api':
+        result = 's3', config.PORT_S3
     elif result[0] == 's3' or re.match(r'.*s3(\-website)?\.([^\.]+\.)?amazonaws.com', host):
         host = re.sub(r's3-website\..*\.amazonaws', 's3.amazonaws', host)
         result = 's3', config.PORT_S3
